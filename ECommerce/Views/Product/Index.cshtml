@@ -1,0 +1,54 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="~/css/index.css"/>
+    <title>Document</title>
+</head>
+<body>
+<div class="products">
+    @foreach (Product p in ViewBag.Products)
+    {
+        <div>
+            <div class="info">
+                <div>
+                    <label>Name: </label>
+                </div>
+                <div>
+                    <p>@p.Name</p>
+                </div>
+            </div>
+            <div class="info">
+                <label>Cost: </label>
+                <p>@p.Cost<span style="margin-left: 5px">azn</span></p>
+            </div>
+            <div class="info">
+                <label>Category: </label>
+                <p>@getCategoryName(p.Category_Id)</p>
+            </div>
+            <div>
+                <a href="Product/RemoveProduct/@p.Id" class="btn btn-danger">Remove</a>
+            </div>
+        </div>
+    }
+    <a asp-controller="Product" asp-action="AddProduct">Add Product</a> 
+</div>
+</body>
+</html>
+
+@{
+    string? getCategoryName(int id)
+    {
+        foreach (Category c in ViewBag.Categories)
+        {
+            if (c.Id == id)
+                return c.Name;
+        }
+
+        return null;
+    }
+}

@@ -1,0 +1,21 @@
+
+
+.info
+{
+    display: flex;
+    gap: 10px;
+}
+
+.btn-danger
+{
+    border: none;
+    border: 5px;
+}
+
+.products
+{
+    display: grid;
+    grid-template-columns: repeat(3 , 300px);
+    gap: 30px;
+    justify-content: center;
+}

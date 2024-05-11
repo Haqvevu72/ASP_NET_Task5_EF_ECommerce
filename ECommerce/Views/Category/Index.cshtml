@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="~/css/index.css"/>
+    <title>Document</title>
+</head>
+<body>
+<div class="products">
+    @foreach (Category c in ViewBag.Categories)
+    {
+        <div>
+            <div class="info">
+                <div>
+                    <label>Category: </label>
+                </div>
+                <div>
+                    <p>@c.Name</p>
+                </div>
+            </div>
+            <div class="info">
+                <label>Product Count: </label>
+                <p>@getProductCount(c.Id)</p>
+            </div>
+            <div>
+                <a href="Category/RemoveCategory/@c.Id" class="btn btn-danger">Remove</a>
+            </div>
+        </div>
+    }
+    <a asp-controller="Category" asp-action="AddCategory">Add Category</a>
+</div>
+</body>
+</html>
+
+@{
+    int getProductCount(int category_id)
+    {
+        int count = 0;
+        foreach (Product p in ViewBag.Products)
+        {
+            if (p.Category_Id == category_id)
+                count += 1;
+        }
+
+        return count;
+    }
+}

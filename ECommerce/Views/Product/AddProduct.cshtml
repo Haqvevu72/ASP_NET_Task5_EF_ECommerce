@@ -1,0 +1,36 @@
+@model ProductVM
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="~/css/form-style.css"/>
+    <title>Document</title>
+</head>
+<body>
+<form method="post" asp-controller="Product" asp-action="AddProduct">
+    <div class="form-element">
+        <label>Product Name: </label>
+        <input type="text" asp-for="Name"/>
+    </div>
+    <div class="form-element">
+        <label>Price: </label>
+        <input type="text" asp-for="Cost"/>
+    </div>
+    <div class="form-element">
+        <label>Product Category:</label>
+        <select asp-for="Category_Id">
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <option value="@c.Id">@c.Name</option>
+            }
+        </select>
+    </div>
+    <div>
+        <button type="submit" class="btn-primary">Add Product</button>
+    </div>
+</form>
+</body>
+</html>
